@@ -1,1 +1,0 @@
-@py.exe C:\Users\Sam\Documents\NJTransitTweets\NJTransitTweets.py %*
