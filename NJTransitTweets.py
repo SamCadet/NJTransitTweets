@@ -50,5 +50,3 @@ userStation = input(
     'Enter the station(s) to find more info, press q to quit: ')
 
 NJTransitTweets(userDate, userStation)
-
-NJTransitTweets(userStation)
