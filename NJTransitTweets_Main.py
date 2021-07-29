@@ -18,7 +18,7 @@ api = tweepy.API(auth, wait_on_rate_limit=False,
 
 def NJTransitTweets(userDate, userStation):
 
-    njtTweets = tweepy.Cursor(api.search, q="NJ Transit",
+    njtTweets = tweepy.Cursor(api.search, q="NJTransit",
                               until=userDate, count=100).items()
 
     omitWords = ['Bus', 'bus', 'Shuttle', 'shuttle', 'Bike', 'bike']
