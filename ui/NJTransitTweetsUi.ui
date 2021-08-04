@@ -6,15 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>584</width>
-    <height>436</height>
+    <width>710</width>
+    <height>400</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>710</width>
+    <height>400</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPlainTextEdit" name="plainTextEdit">
+   <widget class="QPlainTextEdit" name="dateTextEdit">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -24,7 +30,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="plainTextEdit_2">
+   <widget class="QPlainTextEdit" name="stationTextEdit">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -34,20 +40,20 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="dateLabel">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>80</y>
-      <width>211</width>
+      <width>321</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter today's date in YYYY-MM-DD format &lt;/p&gt;&lt;p&gt;including hyphens:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter today's date in YYYY-MM-DD format including hyphens:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="stationLabel">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -60,11 +66,11 @@
      <string>Enter the station(s) to find more info, press q to quit:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="submitButton">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>300</y>
+      <y>310</y>
       <width>141</width>
       <height>61</height>
      </rect>
@@ -73,10 +79,10 @@
      <string>Submit</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="NJTransitTweetsLabel">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>230</x>
       <y>0</y>
       <width>231</width>
       <height>61</height>
@@ -91,14 +97,40 @@
      <string>NJ Transit Tweets</string>
     </property>
    </widget>
-   <widget class="QListView" name="listView">
+   <widget class="QListView" name="tweetListView">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>81</y>
+      <x>440</x>
+      <y>90</y>
       <width>256</width>
       <height>281</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="dateButton">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>140</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Enter</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stationButton">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>240</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Enter</string>
     </property>
    </widget>
   </widget>
@@ -107,7 +139,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>584</width>
+     <width>710</width>
      <height>21</height>
     </rect>
    </property>
