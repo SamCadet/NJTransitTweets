@@ -32,9 +32,9 @@ class Window(QMainWindow, Ui_MainWindow):
 
         self.setupUi(self)
         self.setWindowTitle('NJ Transit Tweets')
-        self.dateTextEdit
+        self.userDate = self.dateTextEdit.text()
         self.dateButton.clicked.connect(self.buttonPushed)
-        self.stationTextEdit
+        self.userStation = self.stationTextEdit.text()
         self.stationButton.clicked.connect(self.buttonPushed)
         self.submitButton.clicked.connect(self.NJTransitTweets)
 
@@ -54,9 +54,6 @@ class Window(QMainWindow, Ui_MainWindow):
 
         # userStation = input(
         #     'Enter the station(s) to find more info, press q to quit: ')
-
-        userDate = self.dateTextEdit.text()
-        userStation = self.stationTextEdit.text()
 
         for tweet in njtTweets:
             if any([word in tweet.text for word in omitWords]):
