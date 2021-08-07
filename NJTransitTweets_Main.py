@@ -33,12 +33,15 @@ class Window(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle('NJ Transit Tweets')
         self.userDate = self.dateTextEdit.text()
-        self.dateButton.clicked.connect(self.buttonPushed)
         self.userStation = self.stationTextEdit.text()
-        self.stationButton.clicked.connect(self.buttonPushed)
-        self.submitButton.clicked.connect(self.NJTransitTweets)
+        self.dateButton.setAutoDefault(True)
+        self.submitButton.setAutoDefault(True)
+        self.stationButton.setAutoDefault(True)
+        self.dateButton.clicked.connect(self.dateButtonPushed)
+        self.stationButton.clicked.connect(self.stationButtonPushed)
+        self.submitButton.clicked.connect(self.submitButtonPushed)
 
-    def NJTransitTweets(userDate, userStation):
+    def NJTransitTweets(self, userDate, userStation):
 
         njtTweets = tweepy.Cursor(api.search, q="NJTransit",
                                   until=userDate, count=100).items()
@@ -58,20 +61,26 @@ class Window(QMainWindow, Ui_MainWindow):
         for tweet in njtTweets:
             if any([word in tweet.text for word in omitWords]):
                 continue
-            if userStation.capitalize() in tweet.text and any([word in tweet.text for word in neededWords]):
+            if self.userStation.capitalize() in tweet.text and any([word in tweet.text for word in neededWords]):
                 print(str(tweet.text) + '\n')
                 counter += 1
             if counter > 10:
                 print('Search complete, have a good day.')
                 break
-            elif (bool(re.match('^[0-9_-]*$', userDate))) is False:
+            elif (bool(re.match('^[0-9_-]*$', self.userDate))) is False:
                 print('That\'s not a valid user date, try again.')
-            elif userStation == 'q':
+            elif self.userStation == 'q':
                 print('OK, have a good day.')
                 break
 
-    def buttonPushed(self):
-        self.returnPressed.connect(self.onClick)
+    def dateButtonPushed(self):
+        print('OK')
+
+    def stationButtonPushed(self):
+        print('OK')
+
+    def submitButtonPushed(self):
+        return self.NJTransitTweets(self.userDate, self.userStation)
 
 
 # NJTransitTweets(userDate, userStation)
