@@ -32,19 +32,15 @@ class Window(QMainWindow, Ui_MainWindow):
 
         self.setupUi(self)
         self.setWindowTitle('NJ Transit Tweets')
-        self.userDate = self.dateTextEdit.text()
-        self.userStation = self.stationTextEdit.text()
-        self.dateButton.setAutoDefault(True)
+        self.userDate = str(self.dateTextEdit.text())
+        self.userStation = str(self.stationTextEdit.text())
         self.submitButton.setAutoDefault(True)
-        self.stationButton.setAutoDefault(True)
-        self.dateButton.clicked.connect(self.dateButtonPushed)
-        self.stationButton.clicked.connect(self.stationButtonPushed)
         self.submitButton.clicked.connect(self.submitButtonPushed)
 
     def NJTransitTweets(self, userDate, userStation):
 
         njtTweets = tweepy.Cursor(api.search, q="NJTransit",
-                                  until=userDate, count=100).items()
+                                  until=self.userDate, count=100).items()
 
         omitWords = ['Bus', 'bus', 'Shuttle', 'shuttle', 'Bike', 'bike']
         neededWords = ['Late', 'late', 'Cancel', 'cancel',
@@ -52,8 +48,10 @@ class Window(QMainWindow, Ui_MainWindow):
 
         counter = 0
 
+        # userDate = self.userDate
         # userDate = input(
         #     'Enter today\'s date in YYYY-MM-DD format including hyphens: ')
+        # userStation = self.userStation
 
         # userStation = input(
         #     'Enter the station(s) to find more info, press q to quit: ')
@@ -73,11 +71,11 @@ class Window(QMainWindow, Ui_MainWindow):
                 print('OK, have a good day.')
                 break
 
-    def dateButtonPushed(self):
-        print('OK')
+    # def dateButtonPushed(self):
+    #     print('OK')
 
-    def stationButtonPushed(self):
-        print('OK')
+    # def stationButtonPushed(self):
+    #     print('OK')
 
     def submitButtonPushed(self):
         return self.NJTransitTweets(self.userDate, self.userStation)
