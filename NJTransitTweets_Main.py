@@ -32,8 +32,9 @@ class Window(QMainWindow, Ui_MainWindow):
 
         self.setupUi(self)
         self.setWindowTitle('NJ Transit Tweets')
-        self.userDate = str(self.dateTextEdit.text())
-        self.userStation = str(self.stationTextEdit.text())
+        self.userDate = self.dateTextEdit.setText('YYYY-MM-DD')
+        self.userStation = self.stationTextEdit.setText(
+            'Ex. Newark Broad Street, Northeast Corridor etc.')
         self.submitButton.setAutoDefault(True)
         self.submitButton.clicked.connect(self.submitButtonPushed)
 
@@ -48,13 +49,8 @@ class Window(QMainWindow, Ui_MainWindow):
 
         counter = 0
 
-        # userDate = self.userDate
-        # userDate = input(
-        #     'Enter today\'s date in YYYY-MM-DD format including hyphens: ')
-        # userStation = self.userStation
-
-        # userStation = input(
-        #     'Enter the station(s) to find more info, press q to quit: ')
+        self.userDate = str(self.dateTextEdit.text())
+        self.userStation = str(self.stationTextEdit.text())
 
         for tweet in njtTweets:
             if any([word in tweet.text for word in omitWords]):
@@ -67,21 +63,15 @@ class Window(QMainWindow, Ui_MainWindow):
                 break
             elif (bool(re.match('^[0-9_-]*$', self.userDate))) is False:
                 print('That\'s not a valid user date, try again.')
+                break
             elif self.userStation == 'q':
                 print('OK, have a good day.')
                 break
 
-    # def dateButtonPushed(self):
-    #     print('OK')
-
-    # def stationButtonPushed(self):
-    #     print('OK')
-
     def submitButtonPushed(self):
+        print(
+            f'The user date is {self.userDate} and the user station is {self.userStation}.')
         return self.NJTransitTweets(self.userDate, self.userStation)
-
-
-# NJTransitTweets(userDate, userStation)
 
 
 if __name__ == '__main__':

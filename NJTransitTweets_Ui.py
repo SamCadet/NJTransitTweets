@@ -28,13 +28,13 @@ class Ui_MainWindow(object):
         self.dateLabel.setGeometry(QtCore.QRect(10, 80, 600, 41))
         self.dateLabel.setObjectName("dateLabel")
         self.stationLabel = QtWidgets.QLabel(self.centralwidget)
-        self.stationLabel.setGeometry(QtCore.QRect(10, 200, 500, 31))
+        self.stationLabel.setGeometry(QtCore.QRect(10, 200, 600, 31))
         self.stationLabel.setObjectName("stationLabel")
         self.submitButton = QtWidgets.QPushButton(self.centralwidget)
         self.submitButton.setGeometry(QtCore.QRect(10, 310, 141, 61))
         self.submitButton.setObjectName("submitButton")
         self.NJTransitTweetsLabel = QtWidgets.QLabel(self.centralwidget)
-        self.NJTransitTweetsLabel.setGeometry(QtCore.QRect(230, 0, 231, 61))
+        self.NJTransitTweetsLabel.setGeometry(QtCore.QRect(230, 0, 530, 61))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.NJTransitTweetsLabel.setFont(font)
@@ -60,7 +60,7 @@ class Ui_MainWindow(object):
         self.dateLabel.setText(_translate(
             "MainWindow", "<html><head/><body><p>Enter today\'s date in YYYY-MM-DD format including hyphens:</p></body></html>"))
         self.stationLabel.setText(_translate(
-            "MainWindow", "Enter the station(s) to find more info, press q to quit:"))
+            "MainWindow", "Enter the station or line to find more info, press q to quit:"))
         self.submitButton.setText(_translate("MainWindow", "Submit"))
         self.NJTransitTweetsLabel.setText(
             _translate("MainWindow", "NJ Transit Tweets"))
