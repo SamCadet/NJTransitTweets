@@ -61,7 +61,7 @@ class Window(QMainWindow, Ui_MainWindow):
             if counter > 10:
                 print('Search complete, have a good day.')
                 break
-            elif (bool(re.match('^[0-9_-]*$', self.userDate))) is False:
+            if (bool(re.match('^[0-9_-]*$', self.userDate))) is False:
                 print('That\'s not a valid user date, try again.')
                 break
             elif self.userStation == 'q':
@@ -70,7 +70,7 @@ class Window(QMainWindow, Ui_MainWindow):
 
     def submitButtonPushed(self):
         print(
-            f'The user date is {self.userDate} and the user station is {self.userStation}.')
+            f'The user date is {self.userDate} and the user station/line is {self.userStation}.')
         return self.NJTransitTweets(self.userDate, self.userStation)
 
 
