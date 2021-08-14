@@ -76,10 +76,8 @@ class Window(QMainWindow, Ui_MainWindow):
                 break
 
     def submitButtonPushed(self):
-        print(self.NJTransitTweets(self.userDate, self.userStation))
-        print(
-            f'The user date is {self.userDate} and the user station/line is {self.userStation}.')
-        return
+        print('Searching...')
+        return self.NJTransitTweets(self.userDate, self.userStation)
 
 
 if __name__ == '__main__':
