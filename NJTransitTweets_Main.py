@@ -2,14 +2,10 @@ import tweepy
 import os
 import re
 import sys
-
 from NJTransitTweets_Ui import Ui_MainWindow
-
-from PyQt5.QtWidgets import QFileDialog, QMainWindow, QApplication
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QMainWindow
+from PyQt5 import QtCore
 from PyQt5 import QtWidgets as qtw
-from PyQt5 import QtGui
 
 
 # NJTransitTweets - reveal Twitter updates on late trains with a simple search
@@ -25,6 +21,13 @@ auth.set_access_token(accessToken, accessTokenSecret)
 api = tweepy.API(auth, wait_on_rate_limit=False,
                  wait_on_rate_limit_notify=False)
 
+class GatherTweets(QtCore.QObject):
+
+    tweetsFound = QtCore.pyqtSignal(str)
+
+    def write(self, text):
+        self.tweetsFound.emit(str(text))
+
 class Window(QMainWindow, Ui_MainWindow):
 
     def __init__(self):
@@ -37,6 +40,10 @@ class Window(QMainWindow, Ui_MainWindow):
             'Ex. Newark Broad Street, Northeast Corridor etc.')
         self.submitButton.setAutoDefault(True)
         self.submitButton.clicked.connect(self.submitButtonPushed)
+        sys.stdout = GatherTweets(tweetsFound=self.displayTweets)
+
+    def displayTweets(self, text):
+        self.tweetsDisplayTextEdit.append(text)
 
     def NJTransitTweets(self, userDate, userStation):
 
@@ -58,7 +65,7 @@ class Window(QMainWindow, Ui_MainWindow):
             if self.userStation.capitalize() in tweet.text and any([word in tweet.text for word in neededWords]):
                 print(str(tweet.text) + '\n')
                 counter += 1
-            if counter > 10:
+            if counter > 3:
                 print('Search complete, have a good day.')
                 break
             if (bool(re.match('^[0-9_-]*$', self.userDate))) is False:
@@ -69,9 +76,10 @@ class Window(QMainWindow, Ui_MainWindow):
                 break
 
     def submitButtonPushed(self):
+        print(self.NJTransitTweets(self.userDate, self.userStation))
         print(
             f'The user date is {self.userDate} and the user station/line is {self.userStation}.')
-        return self.NJTransitTweets(self.userDate, self.userStation)
+        return
 
 
 if __name__ == '__main__':
